@@ -1,3 +1,5 @@
+Please follow below steps to run the app.
+
 For Starting angular app. Follow below steps
 (1) npm i
 (2) ng serve
