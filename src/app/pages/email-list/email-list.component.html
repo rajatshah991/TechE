@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+ 
+      </button>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-menu #menu="matMenu" xPosition="after">
+    <button mat-menu-item (click)="openEmailPopup()">
+      <span>Email</span>
+    </button>
+    <button mat-menu-item disabled>
+      <span>Facebook</span>
+    </button>
+    <button mat-menu-item>
+      <span>Twitter</span>
+    </button>
+  </mat-menu>
+  <div class="table-row all-logs-table table-accodian table-in-veiw">
+    <mat-table [dataSource]="dataSource" matSortDisableClear #table>
+         <ng-container matColumnDef="to">
+              <mat-header-cell *matHeaderCellDef > To</mat-header-cell>
+              <mat-cell *matCellDef="let element; let i=index">
+                  {{element.to}}
+              </mat-cell>
+         </ng-container>
+         <ng-container matColumnDef="description">
+              <mat-header-cell *matHeaderCellDef class="number-of-users"> Subject
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                   {{element.subject}}
+              </mat-cell>
+         </ng-container>
+         <ng-container matColumnDef="time">
+              <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                   {{element.time|date:'dd/MM/yyyy hh:mm:ss'}}
+              </mat-cell>
+         </ng-container>
+         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+         <mat-row *matRowDef="let row;  let i = index; columns: displayedColumns;"></mat-row>
+         ​
+    </mat-table>
+    <mat-paginator class="hide" [pageSizeOptions]="pageArray"></mat-paginator>
+    
+</div>

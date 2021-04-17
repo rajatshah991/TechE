@@ -1,0 +1,37 @@
+<mat-grid-list cols="6"  rowHeight="60px">
+  
+    <mat-grid-tile [colspan]="'6'" [rowspan]="'1'">
+      <button class="choose-file" mat-button [disabled]="fileTypeSelected">
+        <label for="organizationFile" color="primary" 
+                    class="w-max-content cusrsors" >
+                    <span class="upload_img" color="primary">Change File</span>
+                    <input id="organizationFile" [disabled]="!fileTypeSelected" type="file" [accept]="type" multiple (change)="fileChangeEvent($event)" />
+                  </label>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="'6'" [rowspan]="'1'">
+      <span *ngFor="let item of fileTypes">
+        <mat-checkbox [value]="item.value" [checked]="item.checked" (change)="getChangedFileType($event.checked,$event.source.value)" >
+{{item.name}}
+</mat-checkbox>
+      </span>
+</mat-grid-tile>
+<form [formGroup] ="emailForm" (ngSubmit)="submitForm()">
+<mat-grid-tile [colspan]="'6'" [rowspan]="'1'">
+  <input matInput placeholder="To" formControlName="to">
+  <input matInput placeholder="Subject">
+</mat-grid-tile>
+<mat-grid-tile [colspan]="'6'" [rowspan]="'1'">
+  <input matInput placeholder="CC" formControlName="cc">
+  <input matInput placeholder="BCC" formControlName="bcc">
+</mat-grid-tile>
+<mat-grid-tile [colspan]="'6'" [rowspan]="'1'">
+  <textarea matInput  placeholder="Email Content" formControlName="content"></textarea>
+</mat-grid-tile>
+
+<mat-grid-tile [colspan]="'6'" [rowspan]="'1'">
+  <button class="choose-file" type="submit" color="primary" mat-button>Save</button>
+  <button class="choose-file" color="primary" (click)="cancelForm()" mat-button>Cancel</button>
+</mat-grid-tile>
+</form>
+</mat-grid-list>
